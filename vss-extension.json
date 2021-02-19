@@ -1,0 +1,65 @@
+{
+    "manifestVersion": 1,
+    "id": "50a4f510-142a-11e8-85fe-290cdea90db9",
+    "version": "2.0.0",
+    "name": "Resharper DotCover analyse",
+    "description": "The task creates and runs the Resharper DotCover analyse command line",
+    "publisher": "cpateman",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "tags": [
+        "resharper",
+        "cover coverage",
+        "DevSecOps",
+        "vulnerabilities",
+        "Code Quality"
+    ],
+    "content": {
+        "details": {
+            "path": "README.md"
+        }
+    },
+    "categories": [
+        "Azure Pipelines",
+        "Azure Artifacts"
+    ],
+    "icons": {
+        "default": "icon.png"        
+    },
+    "files": [
+        {
+            "path": "buildAndReleaseTask"
+        }
+    ],
+    "links": {
+        "home": {
+            "uri": "https://prcode.blog/"
+        },
+        "repository": {
+            "uri": "https://github.com/PureRandom/FortifyOnDemandVulnerabilities"
+        },
+        "issues": {
+            "uri": "https://github.com/PureRandom/FortifyOnDemandVulnerabilities/issues"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/PureRandom?tab=packages"
+    },
+    "contributions": [
+        {
+            "id": "custom-build-release-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "buildAndReleaseTask"
+            }
+        }
+    ],
+    "public": true
+}

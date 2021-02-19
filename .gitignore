@@ -1,0 +1,4 @@
+download/
+buildAndReleaseTask/index.js
+buildAndReleaseTask/tests/*.js
+buildAndReleaseTask/tests/**/*.js
