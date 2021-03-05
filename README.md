@@ -2,6 +2,8 @@
 
 This is a VSTS task that creates the Resharper DotCover Analyse command line and executes it.
 
+![Build Status](https://dev.azure.com/cpateman/Personal%20Project/_apis/build/status/azdo-dot-cover?branchName=master)
+
 ### Usage
 The aim of this task is not to reinvent the wheel, but to facilitate users with DotCover in VSTS.
 Therefore please refer to [JetBrains](https://www.jetbrains.com/help/dotcover/Running_Coverage_Analysis_from_the_Command_LIne.html) for how to use the command line.
