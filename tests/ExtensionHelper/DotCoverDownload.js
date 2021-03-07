@@ -58,19 +58,20 @@ describe('Dot Cover Download 1', function () {
     });
 });
 describe('Dot Cover Download 2', function () {
-    it('download to  output', function () {
+    it('download to  output', function (done) {
+        this.timeout(10000);
         // Arrange
         var customLocation = '';
         var expectedResult = expectedOutputPath;
         var extensionHelpers = new helpers_1.ExtensionHelpers();
         // Act
-        return extensionHelpers.DownloadDotCover(customLocation).then(function (response) {
+        extensionHelpers.DownloadDotCover(customLocation).then(function (response) {
             // Assert
             console.log('Expected Location: ', expectedResult);
             console.log('Output Location: ', response);
             assert.strictEqual(response, expectedResult, 'should match expecting');
             clearDir();
-        });
+        }).then(done, done);
     });
 });
 /*

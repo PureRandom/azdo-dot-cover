@@ -47,8 +47,8 @@ describe('Dot Cover Download 1', function () {
 });
 describe('Dot Cover Download 2', function () {
 
-    it('download to  output', function () {
-
+    it('download to  output', function (done) {
+        this.timeout(10000);
         // Arrange
         const customLocation = '';
         const expectedResult = expectedOutputPath;
@@ -56,14 +56,15 @@ describe('Dot Cover Download 2', function () {
 
 
         // Act
-        return extensionHelpers.DownloadDotCover(customLocation).then(response => {
+        extensionHelpers.DownloadDotCover(customLocation).then(response => {
 
             // Assert
             console.log('Expected Location: ', expectedResult);
             console.log('Output Location: ', response);
             assert.strictEqual(response, expectedResult, 'should match expecting');
             clearDir();
-        });
+
+        }).then(done, done);
     });
 
 });

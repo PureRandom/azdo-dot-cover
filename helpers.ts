@@ -50,7 +50,7 @@ export class ExtensionHelpers {
             // Download Command Line Tools
             const url = "https://download.jetbrains.com/resharper/ReSharperUltimate.2020.1.3/" + downloadFileName + ".zip"
             const zipLocation = outputLocation + '.zip';
-            this.download(url, zipLocation).then(async () => {
+            await this.download(url, zipLocation).then(async () => {
 
                 // Unzip
                 console.debug('extract to ' + outputLocation);
@@ -63,6 +63,7 @@ export class ExtensionHelpers {
                     console.debug('Original File deleted!');
                 });
 
+                console.debug('Output location ' + outputLocation);
                 return outputLocation;
             });
         }

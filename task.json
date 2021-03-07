@@ -26,7 +26,7 @@
             "name": "TargetExecutable",
             "type": "filePath",
             "label": "Target Executable",
-            "defaultValue": "",
+            "defaultValue": "**/*.sln",
             "required": true,
             "helpMarkDown": "File name of the program to analyse"
         },
@@ -34,7 +34,7 @@
             "name": "TargetWorkingDir",
             "type": "filePath",
             "label": "Target Working Directory",
-            "defaultValue": "",
+            "defaultValue": "$(Build.SourcesDirectory)",
             "required": true,
             "helpMarkDown": "Program working directory"
         },
@@ -80,7 +80,7 @@
             "name": "ReportType",
             "type": "pickList",
             "label": "Report Type",
-            "defaultValue": "",
+            "defaultValue": "JSON",
             "required": false,
             "helpMarkDown": "A type of the report. XML by default",
             "options": {
