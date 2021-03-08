@@ -55,7 +55,7 @@ describe('Run DotCover Full', function () {
                             path = __dirname + '/../testProjects';
                             executable = path + '/bin/Debug/netcoreapp3.1/testProjects.dll';
                             DotCoverCommand = "cover";
-                            return [4 /*yield*/, extensionHelpers.RunDotCover('', path, 'JSON', DotCoverCommand, '', '', executable, '', '', '', '', '', '', '', '', '', '', '', '', '', '').catch(function (issue) {
+                            return [4 /*yield*/, extensionHelpers.RunDotCover(DotCoverCommand, executable, path, '', 'JSON', path, '', '').catch(function (issue) {
                                     console.log('issue: ', issue);
                                 })];
                         case 1:

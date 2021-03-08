@@ -226,7 +226,14 @@ export class ExtensionHelpers {
         return result;
     }
 
-    async RunDotCover(CustomDotCoverPath: string | undefined, TargetWorkingDir: string | undefined, ReportType: string | undefined, DotCoverCommand: string | undefined, ProjectPattern: string | undefined, TargetArguments: string | undefined, TargetExecutable: string | undefined, TempDir: string | undefined, InheritConsole: string | undefined, AnalyseTargetArguments: string | undefined, LogFile: string | undefined, Scope: string | undefined, Filters: string | undefined, AttributeFilters: string | undefined, DisableDefaultFilters: string | undefined, SymbolSearchPaths: string | undefined, AllowSymbolServerAccess: string | undefined, ReturnTargetExitCode: string | undefined, ProcessFilters: string | undefined, HideAutoProperties: string | undefined, CoreInstructionSet: string | undefined)
+    async RunDotCover(CoverCommand: string | undefined,
+        TargetExecutable: string | undefined,
+        TargetWorkingDir: string | undefined,
+        TargetArguments: string | undefined,
+        ReportType: string | undefined,
+        Output: string | undefined,
+        CustomDotCoverPath: string | undefined,
+        AdditionalCommands: string | undefined)
         : Promise<string>{
         
         // Get Dot Cover Path
@@ -237,32 +244,19 @@ export class ExtensionHelpers {
 
         // Create Command
         console.log("**** - Create Command Line Script.. Starting - **** ");
-        let cmdline = dotCoverLocation.replace('zip', '') + '/dotCover.exe ' + DotCoverCommand
+        let cmdline = dotCoverLocation.replace('zip', '') + '/dotCover.exe ' + CoverCommand
 
         // -- Get Assembilies
-        const targetArguments = this.GetTestAssemblies(ProjectPattern, TargetWorkingDir, TargetArguments);
+        const targetArguments = this.GetTestAssemblies('', TargetWorkingDir, TargetArguments);
 
         console.log("**** - Setting options.. Starting - **** ");
         cmdline += this.NamePairCheck("TargetExecutable", TargetExecutable, true);
         cmdline += this.NamePairCheck("TargetWorkingDir", TargetWorkingDir, true);
-        cmdline += this.NamePairCheck("TempDir", TempDir, true);
         cmdline += this.NamePairCheck("ReportType", ReportType, true);
         cmdline += this.NamePairCheck("Output", Output, true);
         let argus = this.NamePairCheck("TargetArguments", targetArguments, false);
         cmdline += ' "' + argus.substring(1) + '" '
-        cmdline += this.NamePairCheck("InheritConsole", InheritConsole, true);
-        cmdline += this.NamePairCheck("AnalyseTargetArguments", AnalyseTargetArguments, true);
-        cmdline += this.NamePairCheck("LogFile", LogFile, true);
-        cmdline += this.NamePairCheck("Scope", Scope, true);
-        cmdline += this.NamePairCheck("Filters", Filters, true);
-        cmdline += this.NamePairCheck("AttributeFilters", AttributeFilters, true);
-        cmdline += this.NamePairCheck("DisableDefaultFilters", DisableDefaultFilters, true);
-        cmdline += this.NamePairCheck("SymbolSearchPaths", SymbolSearchPaths, true);
-        cmdline += this.NamePairCheck("AllowSymbolServerAccess", AllowSymbolServerAccess, true);
-        cmdline += this.NamePairCheck("ReturnTargetExitCode", ReturnTargetExitCode, true);
-        cmdline += this.NamePairCheck("ProcessFilters", ProcessFilters, true);
-        cmdline += this.NamePairCheck("HideAutoProperties", HideAutoProperties, true);
-        cmdline += this.NamePairCheck("CoreInstructionSet", CoreInstructionSet, false);
+        cmdline += AdditionalCommands;
 
         console.log("**** - Setting options.. End - **** ");
 

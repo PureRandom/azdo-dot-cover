@@ -26,7 +26,7 @@ describe('Run DotCover Full', function () {
             var executable = path + '/bin/Debug/netcoreapp3.1/testProjects.dll'
             const DotCoverCommand = "cover";
 
-            var response = await extensionHelpers.RunDotCover('',path,'JSON',DotCoverCommand,'','',executable,'','','','','','','','','','','','','','').catch(issue => {
+            var response = await extensionHelpers.RunDotCover(DotCoverCommand,executable,path,'','JSON',path,'','').catch(issue => {
                 
             console.log('issue: ', issue);
             });

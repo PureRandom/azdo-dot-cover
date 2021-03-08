@@ -7,58 +7,42 @@ async function run() {
         var extensionHelpers = new ExtensionHelpers();
 
         // Get the inputs.
+        const CoverCommand: string | undefined = tl.getInput('CoverCommand', true);
         const TargetExecutable: string | undefined = tl.getInput('TargetExecutable', true);
-        let TargetArguments: string | undefined = tl.getInput('TargetArguments', false);
         const TargetWorkingDir: string | undefined = tl.getInput('TargetWorkingDir', true);
-        const TempDir: string | undefined = tl.getInput('TempDir', false);
+        let TargetArguments: string | undefined = tl.getInput('TargetArguments', false);
         const ReportType: string | undefined = tl.getInput('ReportType', false);
         let Output: string | undefined = tl.getInput('Output', false);
-        const InheritConsole: string | undefined = tl.getInput('InheritConsole', false);
-        const AnalyseTargetArguments: string | undefined = tl.getInput('AnalyseTargetArguments', false);
-        const Scope: string | undefined = tl.getInput('Scope', false);
-        const Filters: string | undefined = tl.getInput('Filters', false);
-        const AttributeFilters: string | undefined = tl.getInput('AttributeFilters', false);
-        const DisableDefaultFilters: string | undefined = tl.getInput('DisableDefaultFilters', false);
-        const SymbolSearchPaths: string | undefined = tl.getInput('SymbolSearchPaths', false);
-        const AllowSymbolServerAccess: string | undefined = tl.getInput('AllowSymbolServerAccess', false);
-        const ReturnTargetExitCode: string | undefined = tl.getInput('ReturnTargetExitCode', false);
-        const ProcessFilters: string | undefined = tl.getInput('ProcessFilters', false);
-        const HideAutoProperties: string | undefined = tl.getInput('HideAutoProperties', false);
-        const LogFile: string | undefined = tl.getInput('LogFile', false);
-        const ProjectPattern: string | undefined = tl.getInput('ProjectPattern', false);
-        const CoreInstructionSet: string | undefined = tl.getInput('CoreInstructionSet', false);
-        const CustomDotCoverPath: string | undefined = tl.getInput('CustomDotCoverPath', false);
+        let CustomDotCoverPath: string | undefined = tl.getInput('CustomDotCoverPath', false);
+        let AdditionalCommands: string | undefined = tl.getInput('AdditionalCommands', false);
 
-        const DotCoverCommand = "cover";
+        //const ProjectPattern: string | undefined = tl.getInput('ProjectPattern', false);
+        //{
+        //    "name": "ProjectPattern",
+        //    "type": "string",
+        //    "label": "Project Pattern",
+        //    "defaultValue": "",
+        //    "required": false,
+        //    "helpMarkDown": "Use this to search the Target Wroking Directory for all file in a pattern",
+        //    "groupName": "advanced"
+        //},
 
-        var result = await extensionHelpers.RunDotCover(
-            CustomDotCoverPath, 
-            TargetWorkingDir, 
-            ReportType, 
-            DotCoverCommand, 
-            ProjectPattern, 
-            TargetArguments, 
+        var result = await extensionHelpers.RunDotCover(CoverCommand,
             TargetExecutable,
-            TempDir, 
-            InheritConsole, 
-            AnalyseTargetArguments, 
-            LogFile, 
-            Scope, 
-            Filters, 
-            AttributeFilters, 
-            DisableDefaultFilters, 
-            SymbolSearchPaths, 
-            AllowSymbolServerAccess, 
-            ReturnTargetExitCode, 
-            ProcessFilters, 
-            HideAutoProperties, 
-            CoreInstructionSet
-        )
+            TargetWorkingDir,
+            TargetArguments,
+            ReportType,
+            Output,
+            CustomDotCoverPath,
+            AdditionalCommands
+        ).catch(issue => {
+                
+            console.log('issue found: ', issue);
+            tl.setResult(tl.TaskResult.Succeeded, issue);
+        });
 
         if (result == "Console Completed") {
             tl.setResult(tl.TaskResult.Failed, result);
-        } else {
-            tl.setResult(tl.TaskResult.Succeeded, result);
         }
 
     }
