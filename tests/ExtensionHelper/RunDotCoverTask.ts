@@ -12,7 +12,7 @@ describe('Name Pair Check', function () {
     });
 
     test_RunDotCoverTask('success cmd',true, 'dir');
-    test_RunDotCoverTask('fail cmd', false, 'fail');
+    //test_RunDotCoverTask('fail cmd', false, 'fail');
 
     function test_RunDotCoverTask(testName: string, expectedResult: boolean, cmdString: string) {
 

@@ -31,57 +31,35 @@ async function run() {
 
         const DotCoverCommand = "cover";
 
-        // Get Dot Cover Path
-        extensionHelpers.DownloadDotCover(CustomDotCoverPath).then(dotCoverLocation => {
+        var result = await extensionHelpers.RunDotCover(
+            CustomDotCoverPath, 
+            TargetWorkingDir, 
+            ReportType, 
+            DotCoverCommand, 
+            ProjectPattern, 
+            TargetArguments, 
+            TargetExecutable,
+            TempDir, 
+            InheritConsole, 
+            AnalyseTargetArguments, 
+            LogFile, 
+            Scope, 
+            Filters, 
+            AttributeFilters, 
+            DisableDefaultFilters, 
+            SymbolSearchPaths, 
+            AllowSymbolServerAccess, 
+            ReturnTargetExitCode, 
+            ProcessFilters, 
+            HideAutoProperties, 
+            CoreInstructionSet
+        )
 
-            // -- Check Output Directory
-            Output = extensionHelpers.GetOutputLocation(Output, TargetWorkingDir, ReportType);
-
-            // Create Command
-            console.log("**** - Create Command Line Script.. Starting - **** ");
-            let cmdline = dotCoverLocation.replace('zip', '') + '/dotCover.exe ' + DotCoverCommand
-
-            // -- Get Assembilies
-            const targetArguments = extensionHelpers.GetTestAssemblies(ProjectPattern, TargetWorkingDir, TargetArguments);
-
-            console.log("**** - Setting options.. Starting - **** ");
-            cmdline += extensionHelpers.NamePairCheck("TargetExecutable", TargetExecutable, true);
-            cmdline += extensionHelpers.NamePairCheck("TargetWorkingDir", TargetWorkingDir, true);
-            cmdline += extensionHelpers.NamePairCheck("TempDir", TempDir, true);
-            cmdline += extensionHelpers.NamePairCheck("ReportType", ReportType, true);
-            cmdline += extensionHelpers.NamePairCheck("Output", Output, true);
-            let argus = extensionHelpers.NamePairCheck("TargetArguments", targetArguments, false);
-            cmdline += ' "' + argus.substring(1) + '" '
-            cmdline += extensionHelpers.NamePairCheck("InheritConsole", InheritConsole, true);
-            cmdline += extensionHelpers.NamePairCheck("AnalyseTargetArguments", AnalyseTargetArguments, true);
-            cmdline += extensionHelpers.NamePairCheck("LogFile", LogFile, true);
-            cmdline += extensionHelpers.NamePairCheck("Scope", Scope, true);
-            cmdline += extensionHelpers.NamePairCheck("Filters", Filters, true);
-            cmdline += extensionHelpers.NamePairCheck("AttributeFilters", AttributeFilters, true);
-            cmdline += extensionHelpers.NamePairCheck("DisableDefaultFilters", DisableDefaultFilters, true);
-            cmdline += extensionHelpers.NamePairCheck("SymbolSearchPaths", SymbolSearchPaths, true);
-            cmdline += extensionHelpers.NamePairCheck("AllowSymbolServerAccess", AllowSymbolServerAccess, true);
-            cmdline += extensionHelpers.NamePairCheck("ReturnTargetExitCode", ReturnTargetExitCode, true);
-            cmdline += extensionHelpers.NamePairCheck("ProcessFilters", ProcessFilters, true);
-            cmdline += extensionHelpers.NamePairCheck("HideAutoProperties", HideAutoProperties, true);
-            cmdline += extensionHelpers.NamePairCheck("CoreInstructionSet", CoreInstructionSet, false);
-
-            console.log("**** - Setting options.. End - **** ");
-
-            console.debug("command running:", cmdline);
-
-            console.log("**** - Create Command Line Script.. Starting - **** ");
-
-            // -- Run Command
-            extensionHelpers.RunDotCoverTask(cmdline, (msg: string, result: boolean) => {
-                result ? console.log(msg) : console.error(msg);
-                if (result == false) {
-                    tl.setResult(tl.TaskResult.Failed, msg);
-                } else {
-                    tl.setResult(tl.TaskResult.Succeeded, "Console Completed");
-                }
-            });
-        });
+        if (result == "Console Completed") {
+            tl.setResult(tl.TaskResult.Failed, result);
+        } else {
+            tl.setResult(tl.TaskResult.Succeeded, result);
+        }
 
     }
     catch (err) {

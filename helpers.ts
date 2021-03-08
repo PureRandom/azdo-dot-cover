@@ -2,6 +2,7 @@ import fs = require('fs');
 import https = require('https');
 import extractZip = require('extract-zip');
 import path = require('path');
+import { resolve } from 'q';
 
 /// Extension helpers
 export class ExtensionHelpers {
@@ -159,6 +160,21 @@ export class ExtensionHelpers {
 
     }
 
+    RunDotCoverTaskWrapper(cmdline: string) : Promise<string>{
+    return new Promise((resolve, reject) => {
+        this.RunDotCoverTask(cmdline,(msg: string, result: boolean) => {
+            result ? console.log(msg) : console.error(msg);
+            var response = "";
+            if (result == false) {
+                response = msg;
+            } else {
+                response =  "Console Completed";
+            }
+            resolve(response)
+        });
+    });
+}
+
     /// Get the dynamic Test Assemblies
     GetTestAssemblies(projectPattern: string | undefined, targetWorkingDir: string | undefined, targetArguments: string | undefined) {
 
@@ -208,6 +224,57 @@ export class ExtensionHelpers {
             }
         }
         return result;
+    }
+
+    async RunDotCover(CustomDotCoverPath: string | undefined, TargetWorkingDir: string | undefined, ReportType: string | undefined, DotCoverCommand: string | undefined, ProjectPattern: string | undefined, TargetArguments: string | undefined, TargetExecutable: string | undefined, TempDir: string | undefined, InheritConsole: string | undefined, AnalyseTargetArguments: string | undefined, LogFile: string | undefined, Scope: string | undefined, Filters: string | undefined, AttributeFilters: string | undefined, DisableDefaultFilters: string | undefined, SymbolSearchPaths: string | undefined, AllowSymbolServerAccess: string | undefined, ReturnTargetExitCode: string | undefined, ProcessFilters: string | undefined, HideAutoProperties: string | undefined, CoreInstructionSet: string | undefined)
+        : Promise<string>{
+        
+        // Get Dot Cover Path
+        var dotCoverLocation = await this.DownloadDotCover(CustomDotCoverPath);
+
+        // -- Check Output Directory
+        var Output = this.GetOutputLocation(Output, TargetWorkingDir, ReportType);
+
+        // Create Command
+        console.log("**** - Create Command Line Script.. Starting - **** ");
+        let cmdline = dotCoverLocation.replace('zip', '') + '/dotCover.exe ' + DotCoverCommand
+
+        // -- Get Assembilies
+        const targetArguments = this.GetTestAssemblies(ProjectPattern, TargetWorkingDir, TargetArguments);
+
+        console.log("**** - Setting options.. Starting - **** ");
+        cmdline += this.NamePairCheck("TargetExecutable", TargetExecutable, true);
+        cmdline += this.NamePairCheck("TargetWorkingDir", TargetWorkingDir, true);
+        cmdline += this.NamePairCheck("TempDir", TempDir, true);
+        cmdline += this.NamePairCheck("ReportType", ReportType, true);
+        cmdline += this.NamePairCheck("Output", Output, true);
+        let argus = this.NamePairCheck("TargetArguments", targetArguments, false);
+        cmdline += ' "' + argus.substring(1) + '" '
+        cmdline += this.NamePairCheck("InheritConsole", InheritConsole, true);
+        cmdline += this.NamePairCheck("AnalyseTargetArguments", AnalyseTargetArguments, true);
+        cmdline += this.NamePairCheck("LogFile", LogFile, true);
+        cmdline += this.NamePairCheck("Scope", Scope, true);
+        cmdline += this.NamePairCheck("Filters", Filters, true);
+        cmdline += this.NamePairCheck("AttributeFilters", AttributeFilters, true);
+        cmdline += this.NamePairCheck("DisableDefaultFilters", DisableDefaultFilters, true);
+        cmdline += this.NamePairCheck("SymbolSearchPaths", SymbolSearchPaths, true);
+        cmdline += this.NamePairCheck("AllowSymbolServerAccess", AllowSymbolServerAccess, true);
+        cmdline += this.NamePairCheck("ReturnTargetExitCode", ReturnTargetExitCode, true);
+        cmdline += this.NamePairCheck("ProcessFilters", ProcessFilters, true);
+        cmdline += this.NamePairCheck("HideAutoProperties", HideAutoProperties, true);
+        cmdline += this.NamePairCheck("CoreInstructionSet", CoreInstructionSet, false);
+
+        console.log("**** - Setting options.. End - **** ");
+
+        console.debug("command running:", cmdline);
+
+        console.log("**** - Create Command Line Script.. Starting - **** ");
+
+        var resultMessage = "";
+        // -- Run Command
+        resultMessage = await this.RunDotCoverTaskWrapper(cmdline);
+        
+        return resultMessage;
     }
 }
 

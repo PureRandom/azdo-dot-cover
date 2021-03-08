@@ -1,6 +1,5 @@
 C:\Users\cpateman\pateman.workspace\CodeRepos\Personal\azdo-dot-cover\buildAndReleaseTask\tests\testProjects\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\cpateman\pateman.workspace\CodeRepos\Personal\azdo-dot-cover\buildAndReleaseTask\tests\testProjects\bin\Debug\netcoreapp3.1\appsettings.json
-C:\Users\cpateman\pateman.workspace\CodeRepos\Personal\azdo-dot-cover\buildAndReleaseTask\tests\testProjects\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 C:\Users\cpateman\pateman.workspace\CodeRepos\Personal\azdo-dot-cover\buildAndReleaseTask\tests\testProjects\bin\Debug\netcoreapp3.1\testProjects.exe
 C:\Users\cpateman\pateman.workspace\CodeRepos\Personal\azdo-dot-cover\buildAndReleaseTask\tests\testProjects\bin\Debug\netcoreapp3.1\testProjects.deps.json
 C:\Users\cpateman\pateman.workspace\CodeRepos\Personal\azdo-dot-cover\buildAndReleaseTask\tests\testProjects\bin\Debug\netcoreapp3.1\testProjects.runtimeconfig.json
@@ -18,3 +17,13 @@ C:\Users\cpateman\pateman.workspace\CodeRepos\Personal\azdo-dot-cover\buildAndRe
 C:\Users\cpateman\pateman.workspace\CodeRepos\Personal\azdo-dot-cover\buildAndReleaseTask\tests\testProjects\obj\Debug\netcoreapp3.1\testProjects.dll
 C:\Users\cpateman\pateman.workspace\CodeRepos\Personal\azdo-dot-cover\buildAndReleaseTask\tests\testProjects\obj\Debug\netcoreapp3.1\testProjects.pdb
 C:\Users\cpateman\pateman.workspace\CodeRepos\Personal\azdo-dot-cover\buildAndReleaseTask\tests\testProjects\obj\Debug\netcoreapp3.1\testProjects.genruntimeconfig.cache
+C:\Users\cpateman\pateman.workspace\CodeRepos\Personal\azdo-dot-cover\buildAndReleaseTask\tests\testProjects\obj\Debug\netcoreapp3.1\scopedcss\bundle\testProjects.styles.css
+C:\Users\cpateman\pateman.workspace\CodeRepos\Personal\azdo-dot-cover\buildAndReleaseTask\tests\testProjects\bin\Debug\netcoreapp3.1\nuget.config
+C:\Users\cpateman\pateman.workspace\CodeRepos\Personal\azdo-dot-cover\buildAndReleaseTask\tests\testProjects\bin\Debug\netcoreapp3.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\cpateman\pateman.workspace\CodeRepos\Personal\azdo-dot-cover\buildAndReleaseTask\tests\testProjects\bin\Debug\netcoreapp3.1\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\cpateman\pateman.workspace\CodeRepos\Personal\azdo-dot-cover\buildAndReleaseTask\tests\testProjects\bin\Debug\netcoreapp3.1\xunit.runner.utility.netcoreapp10.dll
+C:\Users\cpateman\pateman.workspace\CodeRepos\Personal\azdo-dot-cover\buildAndReleaseTask\tests\testProjects\bin\Debug\netcoreapp3.1\xunit.abstractions.dll
+C:\Users\cpateman\pateman.workspace\CodeRepos\Personal\azdo-dot-cover\buildAndReleaseTask\tests\testProjects\bin\Debug\netcoreapp3.1\xunit.assert.dll
+C:\Users\cpateman\pateman.workspace\CodeRepos\Personal\azdo-dot-cover\buildAndReleaseTask\tests\testProjects\bin\Debug\netcoreapp3.1\xunit.core.dll
+C:\Users\cpateman\pateman.workspace\CodeRepos\Personal\azdo-dot-cover\buildAndReleaseTask\tests\testProjects\bin\Debug\netcoreapp3.1\xunit.execution.dotnet.dll
+C:\Users\cpateman\pateman.workspace\CodeRepos\Personal\azdo-dot-cover\buildAndReleaseTask\tests\testProjects\obj\Debug\netcoreapp3.1\testProjects.csproj.CopyComplete

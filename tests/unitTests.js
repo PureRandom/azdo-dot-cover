@@ -10,4 +10,5 @@ describe('run Unit Test Suite', function () {
     importTest('Dot Cover Download', './ExtensionHelper/DotCoverDownload.js');
     importTest('Run Dot Cover', './ExtensionHelper/RunDotCoverTask.js');
     importTest('Get Test Assemblies', './ExtensionHelper/GetTestAssemblies.js');
+    importTest('Get Test Assemblies', './ExtensionHelper/RunDotCover.js');
 });
